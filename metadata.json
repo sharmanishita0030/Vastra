@@ -1,0 +1,6 @@
+{
+  "name": "Atelier AI - Style Wardrobe",
+  "description": "Minimalist digital wardrobe organizing your clothes into curated baskets with smart AI outfit styling and Amazon shopping recommendations.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
