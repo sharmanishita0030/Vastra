@@ -1,0 +1,195 @@
+{
+  "users": [
+    {
+      "id": "usr_10c6e93b-4250-4d2d-b629-0a44f9c50a4c",
+      "name": "Alice User",
+      "email": "test_a_1793152219659@atelier.ai",
+      "passwordHash": "d56cb4ad32420d103e008e182467f75505c255d32ba9691ff0da98d0c47b03d1205a986d7d3a2ebedf1f83757147d276c2aa3260197d4e70b4e7e71e4330e49e",
+      "salt": "fa0f5ee216e03f18177200220a6405e1",
+      "preferredCollection": "ladies",
+      "themePreference": "dark",
+      "createdAt": "2026-10-28T01:50:19.711Z"
+    },
+    {
+      "id": "usr_1d2b0199-25e7-4979-84e4-6f52a4b59fd7",
+      "name": "Bob User",
+      "email": "test_b_1793152219712@atelier.ai",
+      "passwordHash": "832ee0ecf4bcc62560dbbc7fe49d2e33f6a76548cb4094fffc7acb890a0c0bd8644567558f0d7864edd913b3d5507abed84331167513f2a4be8f9d327544585d",
+      "salt": "cc70b5fc1041e7285733c510b7161311",
+      "preferredCollection": "gents",
+      "themePreference": "dark",
+      "createdAt": "2026-10-28T01:50:19.762Z"
+    },
+    {
+      "id": "usr_c34aa174-0caa-4970-9247-cb519cd5ca72",
+      "name": "Alice User",
+      "email": "test_a_1793358761487@atelier.ai",
+      "passwordHash": "904f5349c30fbe867912494383b4abcf9bd407b7267ac28ec110e9a51cd4285d9dc29035820ea1b18ac148060ab4581ed1055a4fdbd39946110060984e28df29",
+      "salt": "65ccf05221083242eea10fdd7eaea83d",
+      "preferredCollection": "ladies",
+      "themePreference": "dark",
+      "createdAt": "2026-10-30T11:12:41.538Z"
+    },
+    {
+      "id": "usr_f025179d-072b-4bde-bd0f-f2e4999030d6",
+      "name": "Bob User",
+      "email": "test_b_1793358761539@atelier.ai",
+      "passwordHash": "37afebde52384e0dfa5120d4489985ca034d82b201e2106ce919734c4a1a41433f9a9ab8401ea7bed6eeb06c7a22bbb3407fc37d3117378d976a8fd147d1d2d5",
+      "salt": "69482b853846ba97f77f90d396fd23d6",
+      "preferredCollection": "gents",
+      "themePreference": "dark",
+      "createdAt": "2026-10-30T11:12:41.588Z"
+    },
+    {
+      "id": "usr_0de9ac2c-f1d6-4ece-acd8-ae2ac610ca04",
+      "name": "Alice User",
+      "email": "test_a_1793381761411@atelier.ai",
+      "passwordHash": "ee606da4a7d7fed804b85e74957c0a79d12cd77441cba9c4dd813d526b542fa7ff561f18f94a3da6897b53c2c51d5b1a7d8ed79fb07bfc16b9f8411a5cf40b65",
+      "salt": "cc3cd28a03a9cbd641f2d72146003198",
+      "preferredCollection": "ladies",
+      "themePreference": "dark",
+      "createdAt": "2026-10-30T17:36:01.462Z",
+      "selectedMood": "Creative",
+      "periodMode": true,
+      "weatherLocation": "Bengaluru"
+    },
+    {
+      "id": "usr_3c4046b6-bf99-4010-932f-e384f5ad84f1",
+      "name": "Bob User",
+      "email": "test_b_1793381761463@atelier.ai",
+      "passwordHash": "9ddb15625aca7c07044481e7e658597e2724bf51f09918f43ad8d9784f7fcaf422f0b8ba83ecc9d0956bf8ebad3608949dcd0f83e0a2366b3fc31eb75ceb65f2",
+      "salt": "9accf8e3ee8311ad6a7626b78135236e",
+      "preferredCollection": "gents",
+      "themePreference": "dark",
+      "createdAt": "2026-10-30T17:36:01.515Z"
+    }
+  ],
+  "items": [
+    {
+      "userId": "usr_c34aa174-0caa-4970-9247-cb519cd5ca72",
+      "collection": "ladies",
+      "categoryId": "tops_blouses",
+      "categoryName": "Tops & Blouses",
+      "name": "Silk Blouse",
+      "primaryColor": "Cream",
+      "id": "item_19d2157b-ed73-40b3-a4f1-7ee0366b1e2c",
+      "createdAt": "2026-10-30T11:12:41.588Z"
+    },
+    {
+      "userId": "usr_c34aa174-0caa-4970-9247-cb519cd5ca72",
+      "collection": "gents",
+      "categoryId": "shirts_polos",
+      "categoryName": "Shirts & Polos",
+      "name": "Mens Linen Shirt",
+      "primaryColor": "White",
+      "id": "item_8e9c1b54-c54b-45fc-a606-777fa908efcc",
+      "createdAt": "2026-10-30T11:12:41.589Z"
+    },
+    {
+      "userId": "usr_c34aa174-0caa-4970-9247-cb519cd5ca72",
+      "collection": "ladies",
+      "categoryId": "skirts_pants",
+      "categoryName": "Skirts & Pants",
+      "name": "Pleated Midi Skirt",
+      "primaryColor": "Navy Blue",
+      "id": "item_d0ddd2f4-25c6-4b10-a073-88e1ad0af60c",
+      "createdAt": "2026-10-30T11:12:41.590Z"
+    },
+    {
+      "userId": "usr_c34aa174-0caa-4970-9247-cb519cd5ca72",
+      "collection": "ladies",
+      "categoryId": "tops_blouses",
+      "categoryName": "Tops & Blouses",
+      "name": "Oversized Loungewear Top",
+      "primaryColor": "Navy blue",
+      "aiConfidence": 0.72,
+      "aiPredictedCategory": "T-shirt",
+      "aiPredictedColor": "Blue",
+      "clothingType": "Sweatshirt",
+      "comfyCloth": true,
+      "id": "item_7b6f7c9a-1cc5-4e3f-a33c-9ec3b54aa424",
+      "createdAt": "2026-10-30T11:15:45.646Z",
+      "colorShade": "Navy blue",
+      "userConfirmedCategory": "Sweatshirt",
+      "userConfirmedColor": "Navy blue",
+      "userOverridden": true,
+      "updatedAt": "2026-10-30T11:15:45.646Z"
+    },
+    {
+      "userId": "usr_c34aa174-0caa-4970-9247-cb519cd5ca72",
+      "collection": "ladies",
+      "categoryId": "tops_blouses",
+      "categoryName": "Tops & Blouses",
+      "name": "Tight Structured Corset Top",
+      "primaryColor": "Black",
+      "clothingType": "Corset",
+      "fit": "Fitted",
+      "comfyCloth": false,
+      "id": "item_1f56fd3f-d3f9-4c3d-b7e2-9396b5ef8aa8",
+      "createdAt": "2026-10-30T11:15:45.647Z"
+    },
+    {
+      "userId": "usr_c34aa174-0caa-4970-9247-cb519cd5ca72",
+      "collection": "ladies",
+      "categoryId": "skirts_pants",
+      "categoryName": "Skirts & Pants",
+      "name": "Soft Fleece Joggers",
+      "primaryColor": "Grey",
+      "clothingType": "Joggers",
+      "fit": "Loose",
+      "fabric": "Cotton Fleece",
+      "comfyCloth": true,
+      "id": "item_4af044f1-4e3f-4a31-85ab-a99b81a975fe",
+      "createdAt": "2026-10-30T11:15:45.647Z"
+    }
+  ],
+  "outfits": [
+    {
+      "userId": "usr_c34aa174-0caa-4970-9247-cb519cd5ca72",
+      "collection": "ladies",
+      "title": "Silk & Pleated",
+      "occasion": "CASUAL DAY OUT",
+      "style": "Contemporary",
+      "explanation": "Pairing this cream silk blouse with the navy pleated midi skirt brings an effortlessly elevated touch to your casual mood. The breathable silk and airy pleats offer graceful movement perfectly suited to today’s pleasant 24°C weather. You will radiate a relaxed, understated elegance all day long.",
+      "matchScore": 83,
+      "itemIds": [
+        "item_19d2157b-ed73-40b3-a4f1-7ee0366b1e2c",
+        "item_d0ddd2f4-25c6-4b10-a073-88e1ad0af60c"
+      ],
+      "items": [
+        {
+          "userId": "usr_c34aa174-0caa-4970-9247-cb519cd5ca72",
+          "collection": "ladies",
+          "categoryId": "tops_blouses",
+          "categoryName": "Tops & Blouses",
+          "name": "Silk Blouse",
+          "primaryColor": "Cream",
+          "id": "item_19d2157b-ed73-40b3-a4f1-7ee0366b1e2c",
+          "createdAt": "2026-10-30T11:12:41.588Z"
+        },
+        {
+          "userId": "usr_c34aa174-0caa-4970-9247-cb519cd5ca72",
+          "collection": "ladies",
+          "categoryId": "skirts_pants",
+          "categoryName": "Skirts & Pants",
+          "name": "Pleated Midi Skirt",
+          "primaryColor": "Navy Blue",
+          "id": "item_d0ddd2f4-25c6-4b10-a073-88e1ad0af60c",
+          "createdAt": "2026-10-30T11:12:41.590Z"
+        }
+      ],
+      "isFavorite": false,
+      "mood": "Casual",
+      "periodModeActive": false,
+      "allComfortable": false,
+      "uncomfortableItemIds": [
+        "item_19d2157b-ed73-40b3-a4f1-7ee0366b1e2c",
+        "item_d0ddd2f4-25c6-4b10-a073-88e1ad0af60c"
+      ],
+      "weatherMatched": false,
+      "id": "outfit_89fd7e00-70f1-4904-9527-715ea30d631e",
+      "createdAt": "2026-10-30T11:15:45.644Z"
+    }
+  ],
+  "feedback": []
+}
