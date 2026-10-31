@@ -1,0 +1,847 @@
+# MASTER PROJECT PROMPT — AI-POWERED STYLE WARDROBE
+
+Act as a senior full-stack engineer, AI engineer, UI/UX designer, and software architect. Build a complete, functional web application called **AI-Powered Style Wardrobe**.
+
+I want you to IMPLEMENT the project, not merely describe it, give me a tutorial, or produce mockups. Create the actual frontend, backend, database, AI integration, and setup instructions in the project workspace.
+
+If a repository already exists, inspect it first and preserve useful existing work. If it is empty, initialize the project from scratch.
+
+Do not stop after building the landing page. Implement the main user flows end to end.
+
+---
+
+# 1. PROJECT OBJECTIVE
+
+Build an AI-powered digital wardrobe where users can:
+
+1. Register and log in.
+2. Switch between Gents and Ladies clothing collections.
+3. Upload a photograph of themselves wearing an outfit.
+4. Have the clothing items in the photograph identified and organized into separate wardrobe categories.
+5. See their wardrobe displayed as large, empty-or-populated basket-style category folders.
+6. Generate outfit combinations using only the clothes they own.
+7. Tell the AI stylist which occasion, event, weather or style they want an outfit for.
+8. View multiple outfit suggestions with explanations.
+9. Find relevant clothing products on Amazon through appropriate shopping links.
+10. Switch between light and dark mode.
+
+The overall experience should feel like a modern, premium fashion application: minimal, elegant, clean, spacious, and easy to use.
+
+The home page must prioritize the user's wardrobe and outfit generation. Do not turn it into a generic analytics dashboard or e-commerce marketplace.
+
+# 2. REQUIRED TECHNOLOGY STACK
+
+Use the following stack unless an existing project already has an appropriate equivalent.
+
+## Frontend
+- React
+- TypeScript
+- Vite
+- Tailwind CSS
+- Lucide icons
+- React Router
+- A suitable lightweight state-management approach
+- A reliable HTTP client for communication with the backend
+
+## Backend
+- Python
+- FastAPI
+- Pydantic for request and response validation
+- SQLAlchemy for database access
+- Alembic for database migrations
+- JWT-based authentication using a secure, established implementation
+- Argon2 or bcrypt password hashing
+
+## Database
+- PostgreSQL for the intended production database.
+- Provide a convenient local development configuration.
+- SQLite may be used for a lightweight local demonstration if the database abstraction supports both correctly.
+
+## Image storage
+- Local storage for development, with an abstraction that can later support S3-compatible object storage.
+- Store image references and clothing metadata in the database, not large image binaries in ordinary database fields.
+
+## AI integration
+- Implement a configurable vision-model integration for extracting clothing information from uploaded photographs.
+- Implement a configurable LLM integration for interpreting outfit requests and generating explanations.
+- Keep model providers and API keys configurable through environment variables.
+- Never hardcode API keys.
+- Do not require a paid model API merely to launch the application locally.
+
+If an AI provider is not configured, provide a clearly labeled fallback flow with manual attribute correction. Do not pretend that AI inference succeeded when it did not.
+
+# 3. AUTHENTICATION PAGES
+
+Create a polished authentication experience.
+
+## Login page
+Include:
+- Application logo and name: Style Wardrobe.
+- Email field.
+- Password field with show/hide control.
+- Login button.
+- Link to registration.
+- Clear validation and error messages.
+- Loading states.
+
+## Registration page
+Include:
+- Name.
+- Email.
+- Password.
+- Confirm password.
+- Registration button.
+- Link back to login.
+
+Requirements:
+- Validate all fields on the frontend and backend.
+- Hash passwords securely.
+- Enforce unique email addresses.
+- Protect private wardrobe and recommendation endpoints.
+- Provide logout functionality.
+- Prevent one user from accessing another user's data.
+- Never store plaintext passwords.
+- Do not rely on frontend route protection alone.
+
+Prefer secure, HTTP-only cookies for session or refresh-token handling where appropriate. If bearer tokens are used, implement their lifecycle safely and do not persist sensitive long-lived tokens in localStorage.
+
+After successful login, redirect to the wardrobe home page.
+
+# 4. MAIN HOME PAGE — MOST IMPORTANT REQUIREMENT
+
+The home page is the central feature of the application.
+
+I want a two-panel layout with approximately equal-width left and right sections on desktop.
+
+There must be NO permanent left sidebar.
+
+There must be NO unnecessary navigation menu, dashboard statistics, advertisements, activity feeds, or unrelated widgets.
+
+The interface should be minimal.
+
+## A. Top-left controls
+
+At the top-left of the main application, display two controls:
+
+### Control 1: Gents / Ladies toggle
+
+Provide a clearly visible two-option toggle:
+
+- Gents
+- Ladies
+
+When Gents is selected:
+- Display men's clothing categories.
+- Show only men's wardrobe items in the wardrobe view.
+- Generate recommendations appropriate to the selected collection.
+- Apply the selected collection consistently to outfit generation.
+
+When Ladies is selected:
+- Display women's clothing categories.
+- Show only women's wardrobe items in the wardrobe view.
+- Generate recommendations appropriate to the selected collection.
+- Apply the selected collection consistently to outfit generation.
+
+Changing this toggle must update the UI and underlying application state immediately.
+
+Important:
+- The toggle selects the clothing collection, not the user's authentication identity.
+- Do not assume the account holder's gender.
+- Do not mix categories or items from the two collections.
+- Store a collection identifier on clothing items.
+- Allow users to switch collections without deleting or modifying their existing wardrobe data.
+
+Persist the selected collection as a user preference if appropriate.
+
+### Control 2: Light / Dark mode toggle
+
+Place a light/dark theme toggle next to the Gents/Ladies control.
+
+Requirements:
+- Light mode should use a clean white or warm-neutral background.
+- Dark mode should use a sophisticated dark background with readable contrast.
+- All components must adapt to the selected theme.
+- Persist the preference across page refreshes.
+- Use accessible text contrast and visible focus states.
+
+These two controls must be positioned at the upper-left of the application content, not hidden inside a settings menu.
+
+## B. Left half: Digital wardrobe
+
+The left half of the page contains the user's digital wardrobe.
+
+At the top, show:
+
+- A heading such as "My Wardrobe".
+- A short subtitle such as "Your clothes, organized your way".
+- An Upload Clothes button.
+- A compact indication of the currently selected collection.
+
+Below this, display large, visually appealing, basket-style category folders.
+
+The category folders are a core part of the visual design.
+
+They should resemble large organized clothing baskets or premium storage bins, with rounded corners, subtle shadows, a simple icon or visual representation, and a clear category name.
+
+They must be visually substantial, not tiny generic icons.
+
+Use a responsive grid with two or three columns depending on available width.
+
+### Gents categories
+
+Include appropriate categories such as:
+- Shirts
+- T-shirts
+- Trousers
+- Jeans
+- Jackets
+- Suits and Blazers
+- Traditional Wear
+- Shorts
+- Footwear
+- Accessories
+
+### Ladies categories
+
+Include appropriate categories such as:
+- Sarees
+- Kurtis
+- Suits and Ethnic Sets
+- Dresses
+- Tops
+- Shirts
+- Trousers
+- Jeans
+- Skirts
+- Jackets
+- Footwear
+- Accessories
+
+The category configuration must be data-driven so that the collection can be expanded later.
+
+### Empty wardrobe state
+
+When a new user has not uploaded any photographs, ALL wardrobe categories must be empty.
+
+This is a strict requirement.
+
+Show:
+- Large, empty basket-style folders.
+- Their category names.
+- A subtle empty-state label, if appropriate.
+- An unobtrusive upload prompt.
+
+Do not populate the wardrobe with fake clothes, stock photographs, sample items, or fabricated user data.
+
+Do not show random product images inside empty baskets.
+
+The user should immediately understand that their wardrobe is empty and that they need to upload their clothes.
+
+The overall page should look intentionally designed, even when every category is empty.
+
+### Populated wardrobe state
+
+Once the user uploads clothing:
+- Display extracted clothing thumbnails in the appropriate categories.
+- Show the item's category and useful attributes.
+- Allow the user to open a category.
+- Allow the user to inspect an item.
+- Allow the user to edit its metadata.
+- Allow the user to delete an item after confirmation.
+- Update the category view immediately after successful upload or deletion.
+
+Clicking a category should open a category-detail view or modal without introducing a permanent sidebar.
+
+# 5. CLOTHING IMAGE UPLOAD AND AI EXTRACTION
+
+This is one of the most important functional requirements.
+
+Provide an Upload Clothes button on the main wardrobe page.
+
+Support:
+- File selection.
+- Drag and drop.
+- Image previews before submission.
+- JPG, JPEG, PNG and WebP images.
+- Configurable file-size limits.
+- Upload progress.
+- Clear errors.
+- Cancel or remove actions before submission.
+
+Validate uploads on both the frontend and backend.
+
+Reject unsupported file types and files exceeding the configured size limit.
+
+## AI extraction workflow
+
+When a user uploads a photograph of themselves wearing clothing, the system should attempt to identify the individual visible clothing items.
+
+For example, if a woman uploads a photograph of herself wearing:
+- A saree.
+- A blouse.
+- Sandals.
+- Earrings.
+
+The system should attempt to identify those items and organize them into the relevant Ladies categories.
+
+The saree should go into Sarees, the blouse should go into the appropriate tops or blouse category, the sandals into Footwear, and the earrings into Accessories.
+
+Likewise, if a man uploads a photograph wearing a shirt, trousers, shoes and a jacket, those items should be classified into their corresponding Gents categories.
+
+## Exact clothing appearance
+
+The goal is to preserve the appearance of the user's actual clothes.
+
+For example, if a user uploads a photograph wearing a red saree with a gold border, the wardrobe should represent that specific red saree, not a generic red saree obtained from the internet.
+
+Implement the best feasible workflow using the available image-processing and vision capabilities.
+
+Where supported:
+1. Identify each clothing item in the image.
+2. Locate the item within the image.
+3. Use an appropriate segmentation or cropping technique to extract an individual item thumbnail.
+4. Preserve the visible colors, patterns and design details as accurately as possible.
+5. Save the extracted thumbnail separately from the original photograph.
+6. Associate the extracted item with its category and metadata.
+
+Keep the original uploaded image available only as needed for the user's wardrobe workflow and apply sensible privacy controls.
+
+IMPORTANT TECHNICAL CONSTRAINT:
+
+Do not simply send a photograph to a text-only LLM and claim that it has generated an exact isolated image of each garment.
+
+If the configured vision model can classify clothing but cannot perform precise segmentation, use an appropriate image-segmentation or cropping component, or present the original photograph with a garment crop when feasible.
+
+If exact garment extraction is not available, provide a transparent fallback that allows the user to review the detected items, edit their attributes, and assign categories manually.
+
+Never invent extracted images or claim that segmentation succeeded when it did not.
+
+## Review before saving
+
+After the AI has analyzed the image, show a review interface.
+
+Display:
+- The detected clothing items.
+- Their extracted thumbnails, where available.
+- Predicted categories.
+- Detected colors.
+- Optional style, material and season attributes.
+- Editable category fields.
+- A checkbox or selection control for including each detected item.
+- A Confirm and Save button.
+
+The user must be able to correct mistakes before the wardrobe is updated.
+
+Only save the selected and confirmed clothing items.
+
+Handle AI failures gracefully. If extraction fails, let the user retry or add a clothing item manually.
+
+Avoid creating duplicate records when a request is retried.
+
+# 6. RIGHT HALF: OUTFIT GENERATION ZONE
+
+The right half of the home page must be dedicated to outfit generation.
+
+It should occupy approximately 50% of the main content width on desktop.
+
+This panel should be visible at all times on the home page.
+
+It must not become a sidebar that overlays the wardrobe.
+
+Use a clean, card-based interface with sufficient space for recommendations.
+
+At the top, display:
+- A heading such as "Your AI Stylist".
+- A short description such as "Outfits created from your wardrobe".
+- A prominent Show Outfits button.
+
+Below the heading, include a chat-like input area.
+
+The user should be able to type requests such as:
+- "Suggest a casual outfit for college."
+- "What should I wear to a wedding?"
+- "Give me a smart-casual look for a presentation."
+- "Suggest a comfortable outfit for a day out."
+- "Recommend something for a dinner."
+- "Suggest a traditional outfit."
+- "Give me an outfit for rainy weather."
+
+Include a send button and a small set of optional prompt suggestions.
+
+The user should be able to press Enter to submit a request, with Shift+Enter allowing a newline.
+
+Keep the interface simple and uncluttered.
+
+Do not add a general-purpose chatbot with unrelated features. This chat area exists specifically to help users generate outfits.
+
+## Show Outfits behavior
+
+When the user clicks Show Outfits:
+
+1. Check whether the currently selected wardrobe collection contains any saved clothing items.
+2. If no items are available, display a modal or popup asking the user to upload a photograph of their clothes.
+3. The popup should clearly explain that outfits can only be generated after clothing has been added.
+4. Include an Upload Clothes button that opens the upload flow.
+5. Provide a Cancel or Close option.
+6. Do not call the LLM unnecessarily when the wardrobe is empty.
+
+If clothing items are available:
+1. Read the current collection.
+2. Read the user's occasion or style request, if supplied.
+3. Send the request to the FastAPI backend.
+4. Generate outfit recommendations from actual wardrobe items.
+5. Display the results in the right-hand panel.
+
+If the wardrobe contains items but none are suitable for the specified request, show an informative no-matching-outfit state instead of fabricating clothes.
+
+If some categories are missing, the engine may recommend combinations from the available items and explain any limitations.
+
+# 7. OUTFIT RECOMMENDATION ENGINE
+
+Implement a genuine recommendation pipeline.
+
+Do not rely exclusively on an LLM prompt to invent outfits.
+
+The backend should:
+
+1. Retrieve the authenticated user's clothing records.
+2. Restrict retrieval to the selected Gents or Ladies collection.
+3. Interpret the requested occasion, style and other constraints.
+4. Apply hard constraints.
+5. Generate valid outfit candidates from available clothing items.
+6. Score and rank candidates.
+7. Return the best suitable results.
+8. Generate an explanation for each result, using an LLM if configured.
+9. Validate that every returned item ID belongs to the user's wardrobe.
+
+Start with a deterministic, testable ranking algorithm.
+
+Potential scoring factors:
+- Color compatibility.
+- Style compatibility.
+- Occasion suitability.
+- Season suitability.
+- User preferences.
+- Compatibility with other selected items.
+
+Use a configurable weighted score.
+
+Treat explicit user constraints as hard filters where applicable, not just as small score penalties.
+
+The system should return multiple distinct outfit options when enough valid combinations exist.
+
+Avoid returning duplicate combinations.
+
+Do not claim that the ranking model has been trained on user data unless that training has actually been implemented.
+
+## Example
+
+User request:
+
+"Give me a smart-casual outfit for a college presentation."
+
+The engine may return:
+- A light-blue shirt.
+- Dark trousers.
+- Neutral sneakers.
+- A jacket if suitable and available.
+
+Each recommendation must reference actual saved clothing items.
+
+The LLM should explain why the combination is appropriate. It must not introduce imaginary wardrobe items.
+
+Use structured Pydantic response schemas so the backend can validate its responses before returning them to the frontend.
+
+# 8. OUTFIT RESULT CARDS
+
+Each recommendation should be displayed as a visually appealing outfit card in the right-hand panel.
+
+Show:
+- A combination of the actual clothing thumbnails.
+- The outfit name or short description.
+- The selected clothing items.
+- A short explanation.
+- The occasion or style for which it is suitable.
+- An optional compatibility score, only if the score has a meaningful and clearly defined interpretation.
+- A button to view outfit details.
+- A button to save or favorite the outfit.
+- A feedback option, such as Like or Dislike.
+
+Use actual wardrobe thumbnails wherever possible.
+
+If an item image is missing, display a neutral placeholder. Do not substitute an unrelated stock image.
+
+The cards should be visually polished without being overly large or excessively decorated.
+
+If the user generates several outfits, display them in a scrollable results area within the right panel, without scrolling the entire page unnecessarily.
+
+Allow the user to regenerate recommendations after changing the request.
+
+If no outfit can be generated, explain why and suggest a practical alternative.
+
+# 9. AMAZON PRODUCT LINKS
+
+I want the application to provide links to Amazon when a user wants to buy additional clothing.
+
+However, the main wardrobe must remain the primary feature.
+
+Do not display Amazon products inside empty wardrobe categories.
+
+Do not create a large shopping marketplace or a shopping sidebar.
+
+Instead, add a small, unobtrusive "Shop similar" or "Find on Amazon" action where it is relevant, such as in outfit details or when a wardrobe item is unavailable.
+
+Requirements:
+- Construct appropriate Amazon search links for the relevant clothing description.
+- Use a configurable Amazon marketplace base URL, with India as the default marketplace.
+- Encode search terms correctly in URLs.
+- Do not invent product listings, prices, reviews or availability.
+- Do not claim that a product is available unless that has been verified through an appropriate integration.
+- Do not scrape Amazon or bypass its access restrictions.
+- If product-specific integration is added later, keep it behind a separate service interface.
+- Make clear that external shopping links lead away from the wardrobe application.
+- Do not claim affiliate earnings or use affiliate tracking without proper configuration and disclosure.
+
+The Amazon integration must not interfere with the outfit-generation experience.
+
+# 10. BACKEND ARCHITECTURE
+
+Implement the backend using FastAPI.
+
+Keep routes, business logic, AI integration and persistence separated.
+
+Suggested project structure:
+
+backend/
+    app/
+        main.py
+        core/
+            config.py
+            security.py
+        api/
+            routes/
+                auth.py
+                wardrobe.py
+                uploads.py
+                recommendations.py
+                outfits.py
+                feedback.py
+        schemas/
+            auth.py
+            wardrobe.py
+            recommendation.py
+        models/
+            user.py
+            wardrobe_item.py
+            outfit.py
+            feedback.py
+        services/
+            image_service.py
+            vision_service.py
+            wardrobe_service.py
+            recommendation_service.py
+            llm_service.py
+            amazon_service.py
+        repositories/
+            wardrobe_repository.py
+        db/
+            session.py
+        dependencies.py
+    tests/
+    alembic/
+    requirements.txt
+    Dockerfile
+
+Adapt this structure if necessary, but maintain the separation of concerns.
+
+Implement appropriate REST endpoints, including:
+
+- POST /api/v1/auth/register
+- POST /api/v1/auth/login
+- POST /api/v1/auth/logout
+- GET /api/v1/auth/me
+- GET /api/v1/wardrobe/items
+- POST /api/v1/wardrobe/items
+- GET /api/v1/wardrobe/items/{item_id}
+- PATCH /api/v1/wardrobe/items/{item_id}
+- DELETE /api/v1/wardrobe/items/{item_id}
+- POST /api/v1/uploads/analyze
+- POST /api/v1/outfits/recommend
+- GET /api/v1/outfits
+- POST /api/v1/feedback
+- GET /health
+
+Use appropriate HTTP methods, status codes, request validation and error handling.
+
+Ensure that all wardrobe queries are scoped to the authenticated user.
+
+The backend should never trust a user ID supplied by the frontend to establish identity.
+
+# 11. DATABASE DESIGN
+
+Create proper database models and migrations.
+
+Include at least:
+
+## Users
+- id
+- name
+- email
+- password_hash
+- preferred_collection
+- theme_preference
+- created_at
+
+## WardrobeItems
+- id
+- user_id
+- collection
+- category
+- name or description
+- primary_color
+- secondary_colors, if available
+- style, if available
+- material, if available
+- season tags, if available
+- original_image_reference
+- extracted_thumbnail_reference
+- optional embedding reference
+- created_at
+- updated_at
+
+## Outfits
+- id
+- user_id
+- collection
+- occasion
+- style
+- explanation
+- optional ranking score
+- created_at
+
+## OutfitItems
+- outfit_id
+- wardrobe_item_id
+
+Use proper primary keys, foreign keys and appropriate indexes.
+
+## Feedback
+- id
+- user_id
+- outfit_id
+- rating or like/dislike
+- optional comment
+- created_at
+
+Enforce ownership and referential integrity.
+
+Persist wardrobe items and preferences so that they remain available after a browser refresh, logout or subsequent login.
+
+Do not store wardrobe records solely in frontend state or localStorage.
+
+# 12. UI DESIGN REQUIREMENTS
+
+The application should have a polished fashion-tech aesthetic.
+
+Design direction:
+- Minimal and premium.
+- Large basket-style wardrobe categories.
+- Soft neutral colors in light mode.
+- Sophisticated dark surfaces in dark mode.
+- Rounded cards and restrained shadows.
+- Clear typography.
+- Generous spacing.
+- Consistent button styles.
+- Subtle transitions.
+- Responsive layouts.
+- Accessible form controls and focus states.
+
+Avoid:
+- Excessive gradients.
+- Unnecessary decorative elements.
+- Multiple sidebars.
+- Random clothing stock images.
+- Fake wardrobe data.
+- Unrelated dashboard widgets.
+- Excessive animations.
+- Generic chatbot branding.
+- UI elements that do not perform their advertised actions.
+
+The primary desktop experience should use a balanced two-panel layout.
+
+On smaller screens, stack the wardrobe and stylist panels vertically. Preserve the functionality of the collection and theme controls.
+
+The interface must have proper loading, error, success, empty and populated states.
+
+# 13. RECOMMENDED USER FLOW
+
+Implement the following flow completely:
+
+1. The user opens the application.
+2. The user registers or logs in.
+3. The application opens the main wardrobe page.
+4. Gents and Ladies collection toggles appear at the upper-left.
+5. The light/dark mode toggle appears next to them.
+6. The wardrobe grid contains large, empty basket-style categories.
+7. The right half contains the AI Stylist panel, chat input and Show Outfits button.
+8. The user uploads a photograph of themselves wearing clothes.
+9. The backend analyzes the photograph using the configured AI pipeline.
+10. The user reviews the detected items and corrects mistakes.
+11. The user confirms the detected clothing items.
+12. The application saves the actual clothing records and thumbnails.
+13. The wardrobe categories populate with the saved items.
+14. The user enters an occasion or style request.
+15. The user clicks Show Outfits.
+16. The backend retrieves relevant clothing items and generates ranked combinations.
+17. The right panel displays outfit cards containing actual wardrobe items.
+18. The user can inspect, save or rate an outfit.
+19. The user can optionally follow an Amazon search link to shop for a related item.
+
+Also implement the empty-wardrobe behavior: if Show Outfits is clicked before any suitable clothes are saved, show the upload popup rather than attempting to invent an outfit.
+
+# 14. ERROR HANDLING AND SECURITY
+
+Implement:
+- Secure password hashing.
+- Proper authentication and authorization.
+- User-specific database queries.
+- Backend validation.
+- File size and content validation.
+- Safe filenames and controlled image paths.
+- Protection against path traversal.
+- Database transaction handling.
+- Meaningful API errors.
+- AI provider timeouts.
+- Bounded retries for appropriate transient errors.
+- Handling for malformed AI responses.
+- Graceful behavior when model API keys are missing.
+- Duplicate-upload or retry protection where appropriate.
+- Environment-based configuration.
+- CORS restricted to configured frontend origins.
+- Logging that avoids credentials and private image contents.
+
+Do not expose internal stack traces, secrets or sensitive data to the frontend.
+
+# 15. TESTING REQUIREMENTS
+
+Write meaningful automated tests.
+
+Include:
+- Registration and login tests.
+- Password hashing checks.
+- Unauthorized request tests.
+- Cross-user data isolation tests.
+- Clothing item creation and deletion tests.
+- Category and collection filtering tests.
+- Image validation tests.
+- Empty wardrobe tests.
+- Recommendation ranking tests.
+- Tests that prevent recommendations from including nonexistent or unauthorized item IDs.
+- Tests for malformed AI responses.
+- Tests for missing AI configuration and model-service failures.
+
+Use mocked AI services in automated tests so that tests do not require paid API calls.
+
+Add frontend tests for important interactions where practical.
+
+Do not simply create empty test files. Implement tests that actually verify behavior.
+
+# 16. ENVIRONMENT AND RUNNING THE PROJECT
+
+Create:
+- A backend `.env.example`.
+- A frontend `.env.example` if needed.
+- A dependency file with compatible versions.
+- A Dockerfile for the backend.
+- A Docker Compose configuration for local development where practical.
+- Database migration instructions.
+- A README containing setup instructions.
+- Commands for running the frontend and backend.
+- Instructions for configuring the AI provider.
+- Instructions for running automated tests.
+- Troubleshooting guidance.
+
+Never commit real credentials or API keys.
+
+The project should be runnable locally with clearly documented commands.
+
+If AI credentials are absent, the application should still launch and allow users to add clothing manually, edit metadata, and test the basic recommendation pipeline.
+
+Do not make authentication, browsing the wardrobe or basic outfit generation dependent on a paid API.
+
+# 17. IMPLEMENTATION ORDER
+
+Build the application in the following order:
+
+Phase 1: Inspect the repository and establish the architecture.
+
+Phase 2: Build the authentication system and database.
+
+Phase 3: Build the complete responsive wardrobe home page, including the two toggles, large empty category baskets and the right-side stylist panel.
+
+Phase 4: Implement clothing uploads, persistent storage and manual item editing.
+
+Phase 5: Implement the vision-model integration, garment detection and best-feasible extraction workflow, with user review before saving.
+
+Phase 6: Implement the recommendation engine, outfit request chat and Show Outfits behavior.
+
+Phase 7: Add outfit detail cards, favorites, feedback and Amazon search links.
+
+Phase 8: Implement tests, security checks, error handling and documentation.
+
+Phase 9: Run the available tests, fix implementation errors and verify the full user flow.
+
+Do not stop after completing the frontend. Continue until the core user journey works end to end.
+
+# 18. DEFINITION OF DONE
+
+The project is complete only when:
+
+- A user can register, log in and log out.
+- The home page has the specified two-panel layout.
+- Gents/Ladies and light/dark controls work.
+- A new user's wardrobe is empty.
+- The category baskets are large and visually appealing.
+- The right panel contains a working Show Outfits button and stylist input.
+- Clicking Show Outfits with an empty wardrobe opens an upload popup.
+- The user can upload a clothing photograph.
+- The system can attempt AI-based garment identification when configured.
+- Detected items can be reviewed and corrected.
+- Confirmed clothing items persist in the database.
+- The clothing items appear in their correct wardrobe categories.
+- Recommendations use actual saved wardrobe items.
+- The backend validates the returned item IDs.
+- The user can inspect and provide feedback on recommendations.
+- Amazon search links work without inventing product data.
+- Authentication and user-specific access restrictions are enforced.
+- The project has setup documentation and meaningful tests.
+
+Do not claim that a requirement is complete unless it has actually been implemented and tested.
+
+# 19. FINAL INSTRUCTIONS
+
+Prioritize functional correctness, clean architecture and the exact requested UI over unnecessary complexity.
+
+Do not introduce microservices, Kubernetes, vector databases or additional infrastructure unless there is a concrete need.
+
+Do not replace the requested design with a generic admin dashboard.
+
+Do not fill empty wardrobes with fabricated clothing.
+
+Do not simulate successful AI analysis with hardcoded responses.
+
+Do not return only code snippets or an architectural explanation.
+
+Inspect the workspace, create the required files, implement the application, run available tests and fix errors.
+
+If an external service requires credentials or a capability unavailable in the current environment, implement the appropriate integration interface, document the configuration needed and provide a working fallback without falsely claiming full AI functionality.
+
+When finished, provide:
+1. A concise summary of the implemented features.
+2. The project folder structure.
+3. Exact commands to start the application.
+4. Required environment variables.
+5. Tests executed and their results.
+6. Any remaining limitations or configuration steps.
+
+**Start by inspecting the project workspace, then implement the application.**
